@@ -12,6 +12,7 @@ class PaymentCrud extends Component
 {
     use WithPagination;
     public $tgl;
+    public $tglakhir;
     public $coin;
     public $tgltransfer;
     public $user;
@@ -89,7 +90,19 @@ class PaymentCrud extends Component
     public function selectedItem($itemId,$action)
     {
         $this->select = $itemId;
-        $this->dispatchBrowserEvent('openHapus');
+        // $this->dispatchBrowserEvent('openHapus');
+
+        $this->select = $itemId;
+        if($action == 'update')
+        {
+            // $this->dispatchBrowserEvent('openModal');
+            $this->edit();
+            $this->show = true;
+        }
+        else {
+            $this->dispatchBrowserEvent('openHapus');
+            
+        }
     
     }
 
@@ -98,6 +111,7 @@ class PaymentCrud extends Component
 
         $this->validate([
             'tgl' => 'required',
+            'tglakhir' => 'required',
             'coin' => 'required',
             'user' => 'required',
             'Wallet' => 'required',
@@ -121,6 +135,7 @@ class PaymentCrud extends Component
 
         Payment::updateOrCreate(['id' => $this->payment_id], [
         'tanggal'               => $this->tgl,
+        'tglakhir'              => $this->tglakhir,
         'coin'                  => $this->coin,
         'users_id'              => $this->user,
         'wallet'                => $this->Wallet,
@@ -155,6 +170,7 @@ class PaymentCrud extends Component
         $post = Payment::findOrFail($this->select);
         $this->payment_id           = $this->select;
         $this->tgl                  = $post->tanggal;
+        $this->tglakhir             = $post->tglakhir;
         $this->coin                 = $post->coin;
         $this->Wallet               = $post->wallet;
         $this->networkfee           = $post->networkfee;
@@ -166,7 +182,7 @@ class PaymentCrud extends Component
         $this->feecointousd         = $post->feecointousd;
         $this->totalusd             = $post->totalusd;
         $this->feebidr              = $post->feebidr;
-        $this->rateusdtobidr        = $post->feecointoidr;
+        $this->feecointoidr        = $post->feecointoidr;
         $this->total                = $post->total;
         $this->catatan              = $post->catatan;
         $this->user                 = $post->users_id;

@@ -19,6 +19,20 @@
                         @error('tgl') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Tanggal akhir</label>
+                        <div class="input-group date " data-provide="datepicker">
+                            <input  class="form-control datepicker" id="tanggal" wire:model="tglakhir"
+                                onchange="this.dispatchEvent(new InputEvent('input'))"  type="date" data-date="" dateformat="y M d">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                            </div>
+                        </div>
+                        @error('tglakhir') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Investor</label>

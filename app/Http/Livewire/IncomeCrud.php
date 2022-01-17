@@ -66,7 +66,16 @@ class IncomeCrud extends Component
         ->groupBy("coin")
         ->where('users_id',$this->inv_id)
         ->first();
-        $this->ubah = $this->pilihancoin->coin;
+        
+        if(isset($this->pilihancoin))
+        {
+           
+            $this->ubah = $this->pilihancoin->coin;
+        }
+        else
+        {
+            $this->ubah ="";
+        }
        
         $this->mesinfirst = Mesin::selectRaw("namamesin as namamesin")
         ->first();

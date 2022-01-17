@@ -46,7 +46,7 @@ class HomeController extends Controller
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
-        $tglgl = date('Y-m-d', strtotime($tglawal->tanggal. ' + 1 days'));
+        $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
        
         //  dd($tglgl );
 
@@ -175,7 +175,7 @@ class HomeController extends Controller
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
-        $tglgl = date('Y-m-d', strtotime($tglawal->tanggal. ' + 1 days'));
+        $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
 
         $pilih  = Datahasil::selectRaw("tgl")
         ->where('users_id', '=', $user->id)

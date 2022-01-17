@@ -29,6 +29,7 @@
                             <th scope="col" style="width: auto">No</th>
                             <th scope="col" style="width: auto">Nama Investor</th>
                             <th scope="col" style="width: auto">Tanggal Transaksi </th>
+                            <th scope="col">Tanggal Indikator</th>
                             <th scope="col">Coin</th>
                             <th scope="col">Wallet</th>
                             <th scope="col">Network Fee</th>
@@ -60,6 +61,7 @@
                             <td>{{ $key+ $payment->firstItem() }}</td>
                             <td>{{ $post ->user->name }}</td>
                             <td>{{ $post ->catatan	}}</td>
+                            <td>{{ $post ->tglakhir }}</td>
                             <td>{{ $post ->coin }}</td>
                             <td>{{ number_format($post ->wallet,8) }}</td>
                             <td>{{ $post ->networkfee }}</td>
