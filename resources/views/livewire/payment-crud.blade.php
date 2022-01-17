@@ -31,6 +31,8 @@
                             <th scope="col" style="width: auto">Tanggal Transaksi </th>
                             <th scope="col">Tanggal Indikator</th>
                             <th scope="col">Coin</th>
+                            <th scope="col">Saldo Awal</th>
+                            <th scope="col">Saldo Akhir</th>
                             <th scope="col">Wallet</th>
                             <th scope="col">Network Fee</th>
                             <th scope="col">Wallet Company</th>
@@ -63,6 +65,8 @@
                             <td>{{ $post ->catatan	}}</td>
                             <td>{{ $post ->tglakhir }}</td>
                             <td>{{ $post ->coin }}</td>
+                            <td>{{ number_format($post ->saldoawal,8)  }}</td>
+                            <td>{{ number_format($post ->saldoakhir,8) }}</td>
                             <td>{{ number_format($post ->wallet,8) }}</td>
                             <td>{{ $post ->networkfee }}</td>
                             <td>{{ number_format( $post ->walletcompany ,6) }} </td>

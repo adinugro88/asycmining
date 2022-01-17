@@ -35,6 +35,8 @@ class PaymentCrud extends Component
     public $payment_id;
     public $totalbidr;
     public $show = false;
+    public $saldoawal;
+    public $saldoAkhir;
    
     public function mount()
     {
@@ -77,6 +79,8 @@ class PaymentCrud extends Component
       $this->catatan        = "";
       $this->feecoin        = "";
       $this->totalcoin      = "";
+      $this->saldoawal      = "";
+      $this->saldoakhir     = "";
     
     }
 
@@ -131,6 +135,8 @@ class PaymentCrud extends Component
             'totalcoin' => 'required',
             'total' => 'required',
             'catatan' => 'required',
+            'saldoawal' => 'required',
+            'saldoakhir' => 'required',
         ]); 
 
         Payment::updateOrCreate(['id' => $this->payment_id], [
@@ -155,6 +161,9 @@ class PaymentCrud extends Component
         'totalcoin'             => $this->totalcoin,
         'totalbidr'             => $this->totalbidr,
         'rateusdtobidr'         => $this->rateusdtobidr,
+
+        'saldoawal'             => $this->saldoawal,
+        'saldoakhir'            => $this->saldoakhir,
         ]);
 
         session()->flash('message', $this->payment_id ? 'Data Berhasil Diupdate.' : 'Data Berhasil Ditambahkan.');
@@ -190,6 +199,8 @@ class PaymentCrud extends Component
         $this->rateusdtobidr        = $post->rateusdtobidr;
         $this->totalcoin            = $post->totalcoin;
         $this->feecoin              = $post->feecoin;
+        $this->saldoawal            = $post->saldoawal;
+        $this->saldoakhir           = $post->saldoakhir;
     }
 
     public function delete()

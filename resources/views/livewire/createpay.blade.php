@@ -41,10 +41,27 @@
                             <option value="{{$db->id }}">{{$db->name }}</option>
                             @endforeach
                         </select>
-                        {{ $user }}
+                       
                         @error('user') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Saldo Awal</label>
+                        <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Saldo Awal"
+                            wire:model="saldoawal">
+                            @error('saldoawal') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Saldo Akhir</label>
+                        <input type="text" class="form-control"  placeholder="Saldo Akhir"
+                            wire:model="saldoakhir">
+                            @error('saldoakhir') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Coin</label>
@@ -52,7 +69,7 @@
                             <option value="BTC" selected>BTC</option>
                             <option value="BCH">BCH</option>
                         </select>
-                        {{ $coin }}
+                       
                         @error('coin') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
