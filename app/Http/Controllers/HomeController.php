@@ -46,10 +46,6 @@ class HomeController extends Controller
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
-        $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
-       
-        //  dd($tglgl );
-
       
 
         $post   = MesinMining::where('users_id', '=', $user->id)->get();
@@ -108,6 +104,11 @@ class HomeController extends Controller
         ->where('watt',  "800")
         ->get();
 
+        if (isset($tglawal))
+        {
+
+         $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
+
         $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
         sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
         sum(ratelistrik) as ratelistrik,
@@ -115,15 +116,10 @@ class HomeController extends Controller
         sum(investor) as total,
         sum(manage) as totalmanage,
         coin as coin")
-        ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->where('users_id', '=', $user->id)
+        ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->groupBy('coin')
         ->get();
-
-       
-
-      
-
 
         $investor = Datahasil::selectRaw("
         sum(INVERT_IDR) as totalwallet")
@@ -131,17 +127,53 @@ class HomeController extends Controller
         ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->get();
 
+        $manajer = Datahasil::selectRaw("
+        sum(manage_IDR) as totalwallet")
+        ->where('users_id', '=', $user->id)
+        ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
+        ->get();
+
+
+        }
+        else
+        {
+            $tglgl ="";
+            $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
+        sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
+        sum(ratelistrik) as ratelistrik,
+        sum(hasillistrikkurang) as hslkrglistrik,
+        sum(investor) as total,
+        sum(manage) as totalmanage,
+        coin as coin")
+        ->where('users_id', '=', $user->id)
+        ->groupBy('coin')
+        ->get(); 
+
+        $investor = Datahasil::selectRaw("
+        sum(INVERT_IDR) as totalwallet")
+        ->where('users_id', '=', $user->id)
+        ->get();
+
+        $manajer = Datahasil::selectRaw("
+        sum(manage_IDR) as totalwallet")
+        ->where('users_id', '=', $user->id)
+        ->get();
+        }
+
+       
+
+      
+
+
+      
+
         foreach($investor as $db )
         {
             $totalIncome = $db->totalwallet;
         }
         
 
-        $manajer = Datahasil::selectRaw("
-        sum(manage_IDR) as totalwallet")
-        ->where('users_id', '=', $user->id)
-        ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
-        ->get();
+      
 
         foreach($manajer as $db )
         {
@@ -173,9 +205,13 @@ class HomeController extends Controller
         $payment = Payment::where('users_id', '=', $user->id)
         ->get();
 
+        
+
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
-        $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
+        
+     
+       
 
         $pilih  = Datahasil::selectRaw("tgl")
         ->where('users_id', '=', $user->id)
@@ -199,7 +235,10 @@ class HomeController extends Controller
         ->where('tgl', '=', $pilih->tgl )
         ->sum('INVERT_IDR');
 
-         $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
+        if (isset($tglawal))
+        {
+            $tglgl = date('Y-m-d', strtotime($tglawal->tglakhir. ' + 1 days'));
+            $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
         sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
         sum(ratelistrik) as ratelistrik,
         sum(hasillistrikkurang) as hslkrglistrik,
@@ -211,24 +250,55 @@ class HomeController extends Controller
         ->groupBy('coin')
         ->get();
 
-
-        
         $investor = Datahasil::selectRaw("
         sum(INVERT_IDR) as totalwallet")
         ->where('users_id', '=', $user->id)
         ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->get();
-        foreach($investor as $db )
-        {
-            $totalIncome = $db->totalwallet;
-        }
-        
 
         $manajer = Datahasil::selectRaw("
         sum(manage_IDR) as totalwallet")
         ->where('users_id', '=', $user->id)
         ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->get();
+
+
+        }
+        else
+        {
+            $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
+        sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
+        sum(ratelistrik) as ratelistrik,
+        sum(hasillistrikkurang) as hslkrglistrik,
+        sum(investor) as total,
+        sum(manage) as totalmanage,
+        coin as coin")
+        ->where('users_id', '=', $user->id)
+        ->groupBy('coin')
+        ->get(); 
+
+        $investor = Datahasil::selectRaw("
+        sum(INVERT_IDR) as totalwallet")
+        ->where('users_id', '=', $user->id)
+        ->get();
+
+        $manajer = Datahasil::selectRaw("
+        sum(manage_IDR) as totalwallet")
+        ->where('users_id', '=', $user->id)
+        ->get();
+        }
+         
+
+
+        
+        
+        foreach($investor as $db )
+        {
+            $totalIncome = $db->totalwallet;
+        }
+        
+
+       
 
         foreach($manajer as $db )
         {

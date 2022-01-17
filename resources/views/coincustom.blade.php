@@ -133,11 +133,11 @@
             <div class="row">
 
                 <div class="col-md-12 mt-5">
-                    {{-- <h4> 
+                    <h4> 
                     <b>
                     data akumulasi mulai :  {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
                     </b>
-                </h4> --}}
+                </h4>
                 </div>
 
                 <div class="col-md-6">

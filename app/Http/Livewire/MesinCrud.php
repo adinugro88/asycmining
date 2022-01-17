@@ -98,5 +98,6 @@ class MesinCrud extends Component
         session()->flash('message', $this->mesin_id ? 'Data Berhasil Diupdate.' : 'Data Berhasil Ditambahkan.');
         $this->dispatchBrowserEvent('closeModal');
         $this->resetdata();
+        return redirect()->to('/admin/mesin/'.$this->inv_id);
     }
 }

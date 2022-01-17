@@ -116,7 +116,7 @@ class IncomeCrud extends Component
         return view('livewire.income-crud', [
             'datahasil' => Datahasil::where('users_id', '=', $this->inv_id )
             ->where('coin',$this->ubah)
-            ->orderBy('tgl','desc')
+            ->orderBy('created_at','desc')
             ->paginate(10),
             'listmesin'=>Mesin::where('users_id', '=', $this->inv_id )
             ->get()
