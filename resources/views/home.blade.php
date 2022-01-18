@@ -84,6 +84,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Mesin</th>
+                                <th scope="col">Active Mesin</th>
                                 <th scope="col">Watt</th>
                                 <th scope="col">income</th>
                                 <th scope="col">Listrik</th>
@@ -102,6 +103,7 @@
                             <tr>
                                 <th scope="row">{{ $no }}</th>
                                 <td>{{ $db->mesin }}</td>
+                                <td>{{ $db->active_mesin }}</td>
                                 <td>{{ $db->watt }}</td>
                                 <td>{{ number_format($db->nilaisbr,9) }}</td>
                                 <td>{{ number_format($db->listrik,9) }}</td>
@@ -128,7 +130,14 @@
                     <div class="col-md-12 mt-5"> 
                         <h4> 
                             <b>
-                            Data Akumulasi mulai :  {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
+                            Data Akumulasi mulai : 
+                            @if ($tglgl == "awal")
+                                {{ $tglgl }}
+
+                            @else
+                            {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
+                            @endif
+                            
                             </b>
                         </h4>
                     </div>

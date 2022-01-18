@@ -137,7 +137,7 @@ class HomeController extends Controller
         }
         else
         {
-            $tglgl ="";
+            $tglgl ="awal";
             $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
         sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
         sum(ratelistrik) as ratelistrik,
@@ -268,7 +268,7 @@ class HomeController extends Controller
         }
         else
         {
-            $tglgl ="";
+            $tglgl ="awal";
             $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
         sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
         sum(ratelistrik) as ratelistrik,
@@ -335,7 +335,7 @@ class HomeController extends Controller
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
-        $tglgl = date('Y-m-d', strtotime($tglawal->tanggal. ' + 1 days'));
+       
        
 
         $totalcoin  = Datahasil::where('users_id', '=', $user->id)
@@ -386,7 +386,7 @@ class HomeController extends Controller
         }
         else
         {
-            $tglgl ="";
+            $tglgl ="awal";
             $totalweek  = Datahasil::selectRaw("sum(INVERT_IDR) as sum,
         sum(nilaisbr) as totalwallet,sum(listrik) as totallistrik,
         sum(ratelistrik) as ratelistrik,

@@ -135,7 +135,13 @@
                 <div class="col-md-12 mt-5">
                     <h4> 
                     <b>
-                    data akumulasi mulai :  {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
+                    data akumulasi mulai : 
+                    @if ($tglgl == "awal")
+                    {{ $tglgl }}
+
+                @else
+                {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
+                @endif
                     </b>
                 </h4>
                 </div>
