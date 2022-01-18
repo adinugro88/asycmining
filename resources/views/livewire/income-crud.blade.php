@@ -51,6 +51,7 @@
                             <th scope="col">Coin</th>
                             <th scope="col">Mesin</th>
                             <th scope="col">Total Coin Per Hari</th>
+                            <th scope="col">Nilai IDR</th>
                             <th scope="col">action</th>
                         </tr>
                     </thead>
@@ -64,6 +65,7 @@
                             <td>{{ $post -> coin }}</td>
                             <td>{{ $post -> mesin }}</td>
                             <td>{{ $post -> nilai }}</td>
+                            <td>{{"Rp " . number_format( $post->INVERT_IDR, 0, ",", ".")  }}</td>
 
                             <td>
 

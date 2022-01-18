@@ -128,12 +128,12 @@
                     <div class="col-md-12 mt-5"> 
                         <h4> 
                             <b>
-                            data akumulasi mulai :  {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
+                            Data Akumulasi mulai :  {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
                             </b>
                         </h4>
                     </div>
                 <div class="col-md-6">
-                    <div class="card mt-5">
+                    <div class="card ">
                         <div class="card-header"><h5><b> Total Wallet</b></h5></div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -165,7 +165,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="card mt-5">
+                    <div class="card ">
                         <div class="card-header"><h5><b> Total Listrik</b></h5></div>
                         <div class="card-body">
                             <div class="table-responsive">
