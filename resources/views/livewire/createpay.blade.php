@@ -33,6 +33,7 @@
                         @error('tglakhir') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Investor</label>
@@ -93,6 +94,22 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Network Fee To IDR</label>
+                        <input type="text" class="form-control" placeholder="Network Fee To IDR" wire:model="networkfeetoidr">
+                        @error('networkfeetoidr') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Total Fee Idr </label>
+                        <input type="text" class="form-control" placeholder="Network Fee" wire:model="networkfeetoidr">
+                        @error('totalfeetoidr') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Wallet Company</label>
                         <input type="text" class="form-control" placeholder="Wallet Company"
                             wire:model="walletcompany">
@@ -123,7 +140,33 @@
                         @error('management') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
+
                 <div class="col-md-12 mt-3 text-center">
+                    <hr>
+                    <b>Rate Lite To BTC</b>
+                    <hr>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rate Lite To BTC</label>
+                        <input type="text" class="form-control" placeholder="Rate Lite To BTC"
+                            wire:model="ratelitetobtc">
+                        @error('ratelitetobtc') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rate Lite To BTC</label>
+                        <input type="text" class="form-control" placeholder="Rate Lite To BTC"
+                            wire:model="ratelitetobtc">
+                        @error('ratelitetobtc') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-3 text-center">
+                    <hr>
                     <b>BCH KE IDR NOTED</b>
                     <hr>
                 </div>
@@ -154,6 +197,7 @@
 
 
                 <div class="col-md-12 mt-3 text-center">
+                    <hr>
                     <b> BTC KE IDR NOTED</b>
                     <hr>
                 </div>
@@ -193,6 +237,7 @@
 
 
                 <div class="col-md-12 mt-3 text-center">
+                    <hr>
                     <b>Transfer LANGSUNG KE COIN NOTED</b>
                     <hr>
                 </div>
