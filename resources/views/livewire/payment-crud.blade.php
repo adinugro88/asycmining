@@ -28,14 +28,20 @@
                         <tr style=" white-space: nowrap;">
                             <th scope="col" style="width: auto">No</th>
                             <th scope="col" style="width: auto">Nama Investor</th>
-                            <th scope="col" style="width: auto">Tanggal Transaksi </th>
+                            <th scope="col" style="width: auto">Tanggal Coin Dari Dan Akhir </th>
                             <th scope="col">Tanggal Indikator</th>
                             <th scope="col">Coin</th>
                             <th scope="col">Saldo Awal</th>
                             <th scope="col">Saldo Akhir</th>
                             <th scope="col">Wallet</th>
                             <th scope="col">Network Fee</th>
+                            <th scope="col">Network Fee To Idr</th>
+                            <th scope="col">Total Fee To Idr</th>
                             <th scope="col">Wallet Company</th>
+                            <th scope="col">Rate Lite To BTC</th>
+                            <th scope="col">Investor * Rate Lite To BTC</th>
+                            <th scope="col">Fee Lite To BTC</th>
+                            <th scope="col">Total Btc</th>
                             <th scope="col">listrik</th>
                             <th scope="col">investor</th>
                             <th scope="col">Management</th>
@@ -46,11 +52,10 @@
                             <th scope="col">Fee Bidr</th>
                             <th scope="col">Total Bidr</th>
                             <th scope="col">Fee Coin To Idr</th>
-
                             <th scope="col">fee Coin Langsung</th>
                             <th scope="col">Total Coin Langsung</th>
-
                             <th scope="col">Total</th>
+                            <th scope="col">Lebih Kurang Bayar</th>
                             <th scope="col">Tanggal Transaksi</th>
                             <th scope="col">action</th>
                         </tr>
@@ -69,7 +74,13 @@
                             <td>{{ number_format($post ->saldoakhir,8) }}</td>
                             <td>{{ number_format($post ->wallet,8) }}</td>
                             <td>{{ $post ->networkfee }}</td>
-                            <td>{{ number_format( $post ->walletcompany ,6) }} </td>
+                            <td>{{ $post ->networkfeetoidr }}</td>
+                            <td>{{ $post ->totalfeeidr }}</td>
+                            <td>{{ number_format( $post ->walletcompany ,6) }}</td>
+                            <td>{{ number_format($post ->ratelitetobtc ,6) }} </td>
+                            <td>{{ number_format($post ->investorlitetobtc ,6) }} </td>
+                            <td>{{ number_format($post ->feelitetobtc ,6) }} </td>
+                            <td>{{ number_format($post ->totalbtc ,6) }} </td>
                             <td>{{ number_format($post ->listrik ,6) }} </td>
                             <td>{{ number_format($post ->investor ,6) }}</td>
                             <td>{{ number_format($post ->management ,6) }}</td>
@@ -83,19 +94,16 @@
                             <td>{{ $post ->rateusdtobidr}}</td>
                             <td>{{ $post ->feebidr  }}</td>
                             <td>{{ $post ->totalbidr	}}</td>
-                            
                             <td>{{$post ->feecointoidr  }}</td>
                             @if ($post ->feecoin != 0)
                             <td>{{ number_format($post ->feecoin ,6) }}</td>
                             @else
                             <td>{{$post ->feecoin }}</td>
                             @endif
-                            
-
                             <td>{{ $post ->totalcoin}} </td>
                             <td>{{ $post ->total	}}</td>
+                            <td>{{ $post ->lebihkurangbayar }} </td>
                             <td>{{ $post ->tanggal }}</td>
-                            
                             <td>
                                 <button wire:click="selectedItem({{ $post->id }},'update')" class="btn btn-primary" >edit</button>
                                 <button wire:click="selectedItem({{ $post->id }},'delete')" type="button"

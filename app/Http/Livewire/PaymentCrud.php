@@ -36,7 +36,19 @@ class PaymentCrud extends Component
     public $totalbidr;
     public $show = false;
     public $saldoawal;
-    public $saldoAkhir;
+    public $saldoakhir;
+
+    public $networkfeetoidr;
+    public $totalfeetoidr;
+    public $ratelitetobtc;
+    public $investorratelitetobtc;
+    public $feelitetobtc;
+    public $totalbtc;
+    public $lebihkurangbayar;
+    public $coinxbidrrate;
+
+
+
    
     public function mount()
     {
@@ -81,6 +93,15 @@ class PaymentCrud extends Component
       $this->totalcoin      = "";
       $this->saldoawal      = "";
       $this->saldoakhir     = "";
+
+      $this->networkfeetoidr                = "";
+      $this->totalfeetoidr                  = "";
+      $this->ratelitetobtc                  = "";
+      $this->investorratelitetobtc          = "";
+      $this->feelitetobtc                   = "";
+      $this->totalbtc                       = "";
+      $this->lebihkurangbayar               = "";
+      $this->coinxbidrrate                  = "";
     
     }
 
@@ -161,9 +182,17 @@ class PaymentCrud extends Component
         'totalcoin'             => $this->totalcoin,
         'totalbidr'             => $this->totalbidr,
         'rateusdtobidr'         => $this->rateusdtobidr,
-
         'saldoawal'             => $this->saldoawal,
         'saldoakhir'            => $this->saldoakhir,
+
+        'networkfeetoidr'       => $this->networkfeetoidr,
+        'totalfeeidr'           => $this->totalfeetoidr,
+        'ratelitetobtc'         => $this->ratelitetobtc,
+        'feelitetobtc'          => $this->feelitetobtc,
+        'totalbtc'              => $this->totalbtc,
+        'investorlitetobtc'     => $this->investorratelitetobtc,
+        'coinxbidrrate'         => $this->coinxbidrrate,
+        'lebihkurangbayar'      => $this->lebihkurangbayar,
         ]);
 
         session()->flash('message', $this->payment_id ? 'Data Berhasil Diupdate.' : 'Data Berhasil Ditambahkan.');
@@ -201,6 +230,17 @@ class PaymentCrud extends Component
         $this->feecoin              = $post->feecoin;
         $this->saldoawal            = $post->saldoawal;
         $this->saldoakhir           = $post->saldoakhir;
+
+        $this->networkfeetoidr                 = $post->networkfeetoidr;
+        $this->totalfeetoidr                   = $post->totalfeeidr;
+        $this->ratelitetobtc                   = $post->ratelitetobtc;
+        $this->feelitetobtc                    = $post->feelitetobtc;
+        $this->totalbtc                        = $post->totalbtc;
+        $this->investorratelitetobtc           = $post->investorlitetobtc;
+        $this->coinxbidrrate                   = $post->coinxbidrrate;
+        $this->lebihkurangbayar                = $post->lebihkurangbayar;
+
+
     }
 
     public function delete()
