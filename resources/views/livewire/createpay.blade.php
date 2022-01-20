@@ -10,8 +10,9 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tanggal Transfer</label>
                         <div class="input-group date " data-provide="datepicker">
-                            <input  class="form-control datepicker" id="tanggal" wire:model="tgl"
-                                onchange="this.dispatchEvent(new InputEvent('input'))"  type="date" data-date="" dateformat="y M d">
+                            <input class="form-control datepicker" id="tanggal" wire:model="tgl"
+                                onchange="this.dispatchEvent(new InputEvent('input'))" type="date" data-date=""
+                                dateformat="y M d">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -24,8 +25,9 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Tanggal akhir</label>
                         <div class="input-group date " data-provide="datepicker">
-                            <input  class="form-control datepicker" id="tanggal" wire:model="tglakhir"
-                                onchange="this.dispatchEvent(new InputEvent('input'))"  type="date" data-date="" dateformat="y M d">
+                            <input class="form-control datepicker" id="tanggal" wire:model="tglakhir"
+                                onchange="this.dispatchEvent(new InputEvent('input'))" type="date" data-date=""
+                                dateformat="y M d">
                             <div class="input-group-addon">
                                 <span class="glyphicon glyphicon-th"></span>
                             </div>
@@ -42,7 +44,7 @@
                             <option value="{{$db->id }}">{{$db->name }}</option>
                             @endforeach
                         </select>
-                       
+
                         @error('user') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -51,15 +53,14 @@
                         <label for="exampleInputEmail1">Saldo Awal</label>
                         <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Saldo Awal"
                             wire:model="saldoawal">
-                            @error('saldoawal') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('saldoawal') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Saldo Akhir</label>
-                        <input type="text" class="form-control"  placeholder="Saldo Akhir"
-                            wire:model="saldoakhir">
-                            @error('saldoakhir') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" placeholder="Saldo Akhir" wire:model="saldoakhir">
+                        @error('saldoakhir') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -69,8 +70,10 @@
                         <select class="custom-select" wire:model="coin">
                             <option value="BTC" selected>BTC</option>
                             <option value="BCH">BCH</option>
+                            <option value="LITE">LITE</option>
+                            <option value="DOGE">DOGE</option>
                         </select>
-                       
+
                         @error('coin') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -80,7 +83,7 @@
                         <label for="exampleInputEmail1">Wallet</label>
                         <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Wallet"
                             wire:model="Wallet">
-                            @error('Wallet') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('Wallet') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -95,7 +98,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Network Fee To IDR</label>
-                        <input type="text" class="form-control" placeholder="Network Fee To IDR" wire:model="networkfeetoidr">
+                        <input type="text" class="form-control" placeholder="Network Fee To IDR"
+                            wire:model="networkfeetoidr">
                         @error('networkfeetoidr') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -111,9 +115,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Wallet Company</label>
-                        <input type="text" class="form-control" placeholder="Wallet Company"
-                            wire:model="walletcompany">
-                            @error('walletcompany') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" placeholder="Wallet Company" wire:model="walletcompany">
+                        @error('walletcompany') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -121,7 +124,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Listrik</label>
                         <input type="text" class="form-control" placeholder="Listrik" wire:model="listrik" ">
-                        @error('listrik') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('listrik') <span class=" error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -129,7 +132,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">Investor</label>
                         <input type="text" class="form-control" placeholder="Investor" wire:model="investor" " >
-                        @error('investor') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('investor') <span class=" error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -158,10 +161,26 @@
 
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Rate Lite To BTC</label>
-                        <input type="text" class="form-control" placeholder="Rate Lite To BTC"
-                            wire:model="ratelitetobtc">
-                        @error('ratelitetobtc') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <label for="exampleInputEmail1">Investor * rate Lite To BTC</label>
+                        <input type="text" class="form-control" placeholder="Investor * rate  Lite To BTC"
+                            wire:model="investorratelitetobtc">
+                        @error('investorratelitetobtc') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Fee Lite To BTC</label>
+                        <input type="text" class="form-control" placeholder="Fee Lite To BTC" wire:model="feelitetobtc">
+                        @error('feelitetobtc') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Total BTC</label>
+                        <input type="text" class="form-control" placeholder="Total BTC" wire:model="totalbtc">
+                        @error('totalbtc') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -182,7 +201,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fee Coin To USDT</label>
-                        <input type="text" class="form-control" placeholder="Fee Coin To USDT" wire:model="feecointousd">
+                        <input type="text" class="form-control" placeholder="Fee Coin To USDT"
+                            wire:model="feecointousd">
                         @error('feecointousd') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
@@ -198,7 +218,7 @@
 
                 <div class="col-md-12 mt-3 text-center">
                     <hr>
-                    <b> BTC KE IDR NOTED</b>
+                    <b> Coin > BIDR > IDR NOTED</b>
                     <hr>
                 </div>
                 <div class="col-md-4">
@@ -206,7 +226,16 @@
                         <label for="exampleInputEmail1">Rate Coin To Bidr</label>
                         <input type="text" class="form-control" placeholder="Rate BTC To Bidr"
                             wire:model="rateusdtobidr">
-                            @error('rateusdtobidr') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('rateusdtobidr') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Rate Coin * Bidr</label>
+                        <input type="text" class="form-control" placeholder="Rate Coin * Bidr"
+                            wire:model="coinxbidrrate">
+                        @error('coinxbidrrate') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -229,9 +258,8 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fee Coin To IDR</label>
-                        <input type="text" class="form-control" placeholder="Fee BTC To IDR"
-                            wire:model="feecointoidr">
-                            @error('feecointoidr') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" placeholder="Fee BTC To IDR" wire:model="feecointoidr">
+                        @error('feecointoidr') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -244,9 +272,8 @@
                 <div class="col-md-4 ">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fee Coin</label>
-                        <input type="text" class="form-control" placeholder="Rate Coin To USDT"
-                            wire:model="feecoin">
-                            @error('feecoin') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" placeholder="Rate Coin To USDT" wire:model="feecoin">
+                        @error('feecoin') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -254,28 +281,38 @@
                 <div class="col-md-8">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Total Coin</label>
-                        <input type="text" class="form-control" placeholder="Total Coin"
-                            wire:model="totalcoin">
-                            @error('totalcoin') <span class="error text-danger">{{ $message }}</span> @enderror
+                        <input type="text" class="form-control" placeholder="Total Coin" wire:model="totalcoin">
+                        @error('totalcoin') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
-
-                <div class="col-md-4 mt-3">
+                <div class="col-md-12">
+                    <hr style="border-top: 5px dotted green;border-radius: 5px;">
+                </div>
+                <div class="col-md-6 mt-3">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Total</label>
                         <input type="text" class="form-control" aria-describedby="networkfee" placeholder="Total"
                             wire:model="total">
-                            @error('total') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('total') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
-                <div class="col-md-8 mt-3">
+                <div class="col-md-6 mt-3">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Lebih Kurang Bayar</label>
+                        <input type="text" class="form-control" aria-describedby="networkfee" placeholder="Lebih Kurang Bayar"
+                            wire:model="lebihkurangbayar">
+                        @error('lebihkurangbayar') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Note</label>
                         <textarea type="text" class="form-control" aria-describedby="networkfee" placeholder="Note"
                             wire:model="catatan"></textarea>
 
-                            @error('catatan') <span class="error text-danger">{{ $message }}</span> @enderror
+                        @error('catatan') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -296,5 +333,3 @@
 
 
 @endif
-
-
