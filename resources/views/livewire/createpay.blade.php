@@ -107,7 +107,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Total Fee Idr </label>
-                        <input type="text" class="form-control" placeholder="Network Fee" wire:model="networkfeetoidr">
+                        <input type="text" class="form-control" placeholder="Network Fee" wire:model="totalfeetoidr">
                         @error('totalfeetoidr') <span class="error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>

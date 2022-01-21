@@ -42,7 +42,10 @@ class HomeController extends Controller
         $user   = Auth::User();
 
         $payment = Payment::where('users_id', '=', $user->id)
+        // ->groupBy('tglakhir')
         ->get();
+
+        // dd($payment);
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();

@@ -34,7 +34,7 @@ Route::middleware(['is_admin'])->group(function () {
     Route::get('admin/mesin', [MesinController::class, 'index'])->name('mesin');
     Route::get('admin/mesin/{id}', [MesinCRDController::class, 'index'])->name('MesinCrud');
     Route::get('admin/income', [DatahasilController::class, 'index'])->name('incomenew');
-    Route::get('admin/income/{id}', [DataHasilController::class, 'crud'])->name('incomecrud');
+    Route::get('admin/income/{id}', [DatahasilController::class, 'crud'])->name('incomecrud');
     Route::get('admin/payment', [PaymentController::class, 'index'])->name('payment');
 }); 
 

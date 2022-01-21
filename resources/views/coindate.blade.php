@@ -269,15 +269,20 @@
                                     <thead class="">
                                         <tr style=" white-space: nowrap;">
                                             <th scope="col" style="width: auto">No</th>
-                                            
                                             <th scope="col" style="width: auto">Tanggal Transaksi </th>
                                             <th scope="col">Coin</th>
                                             <th scope="col">Wallet</th>
                                             <th scope="col">Network Fee</th>
-                                            <th scope="col">Wallet Company</th>
+                                            <th scope="col">Network Fee To Idr</th>
+                                            <th scope="col">Total Fee To Idr</th>
                                             <th scope="col">listrik</th>
                                             <th scope="col">investor</th>
                                             <th scope="col">Management</th>
+                                            <th scope="col">Wallet Company</th>
+                                            <th scope="col">Rate Lite To BTC</th>
+                                            <th scope="col">Investor * Rate Lite To BTC</th>
+                                            <th scope="col">Fee Lite To BTC</th>
+                                            <th scope="col">Total Btc</th>
                                             <th scope="col">Rate Coin To USDT</th>
                                             <th scope="col">Fee Coin To USDT</th>
                                             <th scope="col">Total USDT</th>
@@ -288,6 +293,7 @@
                                             <th scope="col">fee Coin To BTC</th>
                                             <th scope="col">Total Coin To BTC</th>
                                             <th scope="col">Total In IDR</th>
+                                            <th scope="col">Lebih / Kurang Transfer </th>
                                             <th scope="col">Tanggal Transaksi</th>
                                         </tr>
                                     </thead>
@@ -301,10 +307,16 @@
                                             <td>{{ $post ->coin }}</td>
                                             <td>{{ number_format($post ->wallet,8) }}</td>
                                             <td>{{ number_format($post ->networkfee,6) }}</td>
-                                            <td>{{ number_format( $post ->walletcompany ,6) }} </td>
+                                            <td>{{ number_format($post ->networkfeetoidr,6) }}</td>
+                                            <td>{{ number_format($post ->totalfeeidr,6) }}</td>
                                             <td>{{ number_format($post ->listrik ,6) }} </td>
                                             <td>{{ number_format($post ->investor ,6) }}</td>
                                             <td>{{ number_format($post ->management ,6) }}</td>
+                                            <td>{{ number_format( $post ->walletcompany ,6) }} </td>
+                                            <td>{{ number_format($post ->ratelitetobtc ,6) }} </td>
+                                            <td>{{ number_format($post ->investorlitetobtc ,6) }} </td>
+                                            <td>{{ number_format($post ->feelitetobtc ,6) }} </td>
+                                            <td>{{ number_format($post ->totalbtc ,6) }} </td>
                                             <td>{{ $post ->ratecointousd}}</td>
                                             @if ($post ->feecoin != 0)
                                             <td>{{ number_format($post ->feecointousd ,6) }}</td>
@@ -326,6 +338,8 @@
                 
                                             <td>{{ $post ->totalcoin}} </td>
                                             <td> {{"Rp " . number_format($post ->total, 0, ",", ".")}}</td>
+
+                                            <td> {{"Rp " . number_format($post ->lebihkurangbayar, 0, ",", ".")  }} </td>
                                             <td> {{ \Carbon\Carbon::parse( $post ->tanggal )->format('d M Y') }}</td>
                                             
                                     

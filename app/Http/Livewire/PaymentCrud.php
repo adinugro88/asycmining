@@ -61,7 +61,8 @@ class PaymentCrud extends Component
     public function render()
     {   
         return view('livewire.payment-crud',[
-            'payment'       => Payment::paginate(5),
+            'payment'       => Payment::orderBy('created_at','desc')
+            ->paginate(5),
             'investorpilih' => User::where('is_admin', 0)->get()
         ]);
     }
@@ -197,6 +198,7 @@ class PaymentCrud extends Component
 
         session()->flash('message', $this->payment_id ? 'Data Berhasil Diupdate.' : 'Data Berhasil Ditambahkan.');
         $this->dispatchBrowserEvent('closeModal');
+        return redirect()->to('/admin/payment');
         $this->show = false;
         $this->resetCreateForm();
     }
