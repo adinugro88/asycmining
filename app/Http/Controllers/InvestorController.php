@@ -8,6 +8,17 @@ use App\Models\User;
 
 class InvestorController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function adminHome()
+    {
+        $listinvestor = Auth::User()->where('is_admin',0)->get();
+
+        return view('adminHome',['listinvestor'=>$listinvestor]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

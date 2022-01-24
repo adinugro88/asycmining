@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class IncomeController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -80,5 +85,12 @@ class IncomeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function adminHome()
+    {
+        $listinvestor = Auth::User()->where('is_admin',0)->get();
+
+        return view('adminHome',['listinvestor'=>$listinvestor]);
     }
 }

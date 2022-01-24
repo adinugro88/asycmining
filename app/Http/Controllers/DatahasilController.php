@@ -9,8 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
+
 class DatahasilController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $listinvestor = Auth::User()->where('is_admin',0)->get();
@@ -21,4 +28,11 @@ class DatahasilController extends Controller
     {
         return view('admin.incomecrud',['id'=>$id]);
     } 
+
+    public function adminHome()
+    {
+        $listinvestor = Auth::User()->where('is_admin',0)->get();
+
+        return view('adminHome',['listinvestor'=>$listinvestor]);
+    }
 }
