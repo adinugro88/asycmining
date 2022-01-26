@@ -97,6 +97,8 @@ class IncomeCrud extends Component
         ->where('users_id',$this->inv_id)
         ->where('namamesin',$this->mesin)
         ->first();
+
+        // if(isset())
         $this->pembagi = $data->persentase;
         
         $data2 = Mesin::selectRaw("qty as qty")

@@ -239,7 +239,6 @@
                                         <td>{{ number_format($db -> hslkrglistrik,8) }}</td>
                                         <td>{{ number_format($db -> total,9) }}</td>
                                         <td>{{ number_format($db -> totalmanage,9) }}</td>
-        
                                     </tr>
                                     @endforeach
                                     <tr>
