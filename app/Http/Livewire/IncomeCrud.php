@@ -58,10 +58,12 @@ class IncomeCrud extends Component
       
         $this->inv_id = $id;
         $this->investor = User::where('id',$this->inv_id)->first();
-        // dd($this->investor);
+      
         $this->coin = "BTC";
-        $this->mesin = "L3+";
-
+       
+        $mesin = Mesin::where('users_id',$this->inv_id)->first();
+        $this->mesin = $mesin->namamesin;
+        // dd($this->mesin); 
         $this->pilihancoin = Datahasil::selectRaw("coin as coin")
         ->groupBy("coin")
         ->where('users_id',$this->inv_id)
