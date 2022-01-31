@@ -42,7 +42,6 @@ class HomeController extends Controller
         $user   = Auth::User();
 
         $payment = Payment::where('users_id', '=', $user->id)
-        // ->groupBy('tglakhir')
         ->get();
 
         // dd($payment);
@@ -123,6 +122,7 @@ class HomeController extends Controller
         ->whereBetween('tgl', [ $tglgl,'CURDATE()'])
         ->groupBy('coin')
         ->get();
+        // 'tgl', [ $tglgl,'CURDATE()']
 
         $investor = Datahasil::selectRaw("
         sum(INVERT_IDR) as totalwallet")
