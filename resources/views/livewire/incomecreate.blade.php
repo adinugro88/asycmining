@@ -32,33 +32,33 @@
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Income Total By Day</label>
-                    <input type="text" class="form-control"  wire:model.defer="incometotalbyday">
+                    <input type="text" class="form-control"  wire:model.lazy="incometotalbyday">
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Rate By Day</label>
-                    <input type="text" class="form-control"  wire:model.defer="rate">
+                    <input type="text" class="form-control"  wire:model.lazy="rate">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Active Mesin</label>
-                    <input type="text" class="form-control"  wire:model.defer="active_mesin">
+                    <input type="text" class="form-control"  wire:model.lazy="active_mesin">
                 </div>
             </div>
 
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Persen Investor</label>
-                    <input type="text" class="form-control"  wire:model.defer="investorpersen">
+                    <input type="text" class="form-control"  wire:model.lazy="investorpersen">
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Persen Manajemen</label>
-                    <input type="text" class="form-control"  wire:model.defer="manajemenpersen">
+                    <input type="text" class="form-control"  wire:model.lazy="manajemenpersen">
                 </div>
             </div>
 
