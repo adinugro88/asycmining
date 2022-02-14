@@ -14,6 +14,7 @@
                     <select class="custom-select" wire:model="coin">
                         <option value="BTC"  {{ $ubah == "BTC" ? 'selected' : '' }}>BTC</option>
                         <option value="BCH">BCH</option>
+                        <option value="DGB">DGB</option>
                         <option value="LITE">LITE</option>
                         <option value="DODGE">DODGE</option>
                     </select>
