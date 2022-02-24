@@ -72,6 +72,7 @@
                             <option value="BCH">BCH</option>
                             <option value="LITE">LITE</option>
                             <option value="DOGE">DOGE</option>
+                            <option value="DGB">DGB</option>
                         </select>
 
                         @error('coin') <span class="error text-danger">{{ $message }}</span> @enderror
