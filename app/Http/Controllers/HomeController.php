@@ -331,7 +331,7 @@ class HomeController extends Controller
         ->groupBy('tgl')
         ->get();
 
-        $tgl  = $tgld;
+        $tgl = $tgld;
         $datacoin = $coin;
         $payment = Payment::where('users_id', '=', $user->id)
         ->get();
@@ -340,12 +340,12 @@ class HomeController extends Controller
         ->get()->last();
        
        
-
-        $totalcoin  = Datahasil::where('users_id', '=', $user->id)
-        ->where('coin', '=', 'BTC')
-        ->where('tgl', '=', $tgl )
-        ->sum('nilaisbr');
        
+        $totalcoin  = Datahasil::where('users_id', '=', $user->id)
+        ->where('coin', '=', $coin)
+        ->where('tgl', '=', $tgld )
+        ->sum('nilaisbr');
+        
         $post   = MesinMining::where('users_id', '=', $user->id)->get();
         $miner  = Datahasil::where('users_id', '=', $user->id)
         ->where('coin', '=', $coin)
