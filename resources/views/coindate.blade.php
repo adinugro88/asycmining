@@ -33,7 +33,35 @@
                     </table>
                 </div>
             </div>
-
+            <div class="col-md-12 col-12">
+                <h4 class="mt-4"><b>Filter Data</b></h4>
+                <form action="data/find" method="get">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label for="">pilih Coin</label>
+                            <select class="form-control" name="coin" id="">
+                                @foreach ($url as $db)
+                                <option value="{{ $db->coin }}">{{ $db->coin }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="">Tanggal Awal dan akhir</label>
+                            <div class="input-group input-daterange">
+                                <input class="form-control" type="date" id="tglawal" name="tglawal">
+                                &nbsp;  &nbsp;
+                                <div>to</div>
+                                &nbsp;  &nbsp;
+                                <input class="form-control" type="date" id="tglakhir" name="tglakhir">
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="">Cari Data</label>
+                            <button type="submit" class="btn btn-info form-control">Cari Data</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <h4 class="mt-4"><b>Pilih Coin</b></h4>
             @foreach ($url as $db)
             <a type="button" class="btn btn-info {{ request()->is('$db->coin*')  ? 'active' : '' }}" href="/coin/{{ $db->coin }}">{{ $db->coin }}</a>

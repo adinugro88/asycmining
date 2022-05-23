@@ -4,7 +4,6 @@
     .table-responsive-fix {
         display: table !important;
     }
-
 </style>
 
 @section('content')
