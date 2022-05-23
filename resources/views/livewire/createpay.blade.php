@@ -50,6 +50,20 @@
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Coin</label>
+                        <select class="custom-select" wire:model="coin">
+                            <option value="BTC" selected>BTC</option>
+                            <option value="BCH">BCH</option>
+                            <option value="LITE">LITE</option>
+                            <option value="DOGE">DOGE</option>
+                            <option value="DGB">DGB</option>
+                        </select>
+
+                        @error('coin') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Saldo Awal</label>
                         <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Saldo Awal"
                             wire:model="saldoawal">
@@ -64,20 +78,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Coin</label>
-                        <select class="custom-select" wire:model="coin">
-                            <option value="BTC" selected>BTC</option>
-                            <option value="BCH">BCH</option>
-                            <option value="LITE">LITE</option>
-                            <option value="DOGE">DOGE</option>
-                            <option value="DGB">DGB</option>
-                        </select>
-
-                        @error('coin') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+               
 
                 <div class="col-md-4">
                     <div class="form-group">
@@ -85,6 +86,30 @@
                         <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Wallet"
                             wire:model="Wallet">
                         @error('Wallet') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Listrik</label>
+                        <input type="text" class="form-control" placeholder="Listrik" wire:model="listrik" ">
+                        @error('listrik') <span class=" error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Management</label>
+                        <input type="text" class="form-control" placeholder="Management" wire:model="management">
+                        @error('management') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Investor</label>
+                        <input type="text" class="form-control" placeholder="Investor" wire:model="investor" " >
+                        @error('investor') <span class=" error text-danger">{{ $message }}</span> @enderror
                     </div>
                 </div>
 
@@ -96,7 +121,16 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 ">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Investor - Network Fee </label>
+                        <input type="text" class="form-control" placeholder="Investor - Network Fee"
+                            wire:model="invminnetworkfee">
+                        @error('invminnetworkfee') <span class="error text-danger">{{ $message }}</span> @enderror
+                    </div>
+                </div>
+
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Network Fee To IDR</label>
                         <input type="text" class="form-control" placeholder="Network Fee To IDR"
@@ -105,7 +139,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Total Fee Idr </label>
                         <input type="text" class="form-control" placeholder="Network Fee" wire:model="totalfeetoidr">
@@ -113,7 +147,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Wallet Company</label>
                         <input type="text" class="form-control" placeholder="Wallet Company" wire:model="walletcompany">
@@ -121,29 +155,9 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Listrik</label>
-                        <input type="text" class="form-control" placeholder="Listrik" wire:model="listrik" ">
-                        @error('listrik') <span class=" error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                </div>
+             
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Investor</label>
-                        <input type="text" class="form-control" placeholder="Investor" wire:model="investor" " >
-                        @error('investor') <span class=" error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Management</label>
-                        <input type="text" class="form-control" placeholder="Management" wire:model="management">
-                        @error('management') <span class="error text-danger">{{ $message }}</span> @enderror
-                    </div>
-                </div>
 
                 <div class="col-md-12 mt-3 text-center">
                     <hr>
@@ -185,12 +199,12 @@
                     </div>
                 </div>
 
-                <div class="col-md-12 mt-3 text-center">
+                <div class="col-md-12 mt-3 text-center d-none">
                     <hr>
                     <b>BCH KE IDR NOTED</b>
                     <hr>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Rate Coin To USDT</label>
                         <input type="text" class="form-control" placeholder="Rate Coin To USDT"
@@ -199,7 +213,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Fee Coin To USDT</label>
                         <input type="text" class="form-control" placeholder="Fee Coin To USDT"
@@ -208,7 +222,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-4 d-none">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Total USDT</label>
                         <input type="text" class="form-control" placeholder="Total USD" wire:model="totalusd">

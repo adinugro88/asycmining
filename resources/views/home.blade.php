@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 <style>
+    .table-responsive-fix {
+        display: table !important;
+    }
 
-.table-responsive-fix{
-   display:table!important;
-}
 </style>
 
 @section('content')
@@ -12,7 +12,9 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header"><h5><b>  Daftar Mesin</b></h5></div>
+                <div class="card-header">
+                    <h5><b> Daftar Mesin</b></h5>
+                </div>
                 <div class="card-body">
                     <table class="table">
                         <thead>
@@ -41,39 +43,79 @@
                 </div>
             </div>
 
-            <h4 class="mt-4"><b>Pilih Coin</b></h4>
-            @foreach ($url as $db)
-            <a type="button" class="btn btn-info {{ request()->is('$db->coin*') ? 'active' : '' }}" href="coin/{{ $db->coin }}">{{ $db->coin }}</a>
-            @endforeach
+            <div class="row">
+                <div class="col-md-12 col-12">
+                    <h4 class="mt-4"><b>Filter Data</b></h4>
+                    <form action="data/find" method="get">
+                        <div class="row">
+                            <div class="form-group col-md-4">
+                                <label for="">pilih Coin</label>
+                                <select class="form-control" name="coin" id="">
+                                    @foreach ($url as $db)
+                                    <option value="{{ $db->coin }}">{{ $db->coin }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="">Tanggal Awal dan akhir</label>
+                                <div class="input-group input-daterange">
+                                    <input class="form-control" type="date" id="tglawal" name="tglawal">
+                                    &nbsp;  &nbsp;
+                                    <div>to</div>
+                                    &nbsp;  &nbsp;
+                                    <input class="form-control" type="date" id="tglakhir" name="tglakhir">
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="">Cari Data</label>
+                                <button type="submit" class="btn btn-info form-control">Cari Data</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="col-md-12 col-12">
+                    <h4 class="mt-4"><b>Pilih Coin</b></h4>
+                    @foreach ($url as $db)
+                    <a type="button" class="btn btn-info {{ request()->is('$db->coin*') ? 'active' : '' }}"
+                        href="coin/{{ $db->coin }}">{{ $db->coin }}</a>
+                    @endforeach
+                </div>
+
+            </div>
+
+
+
+
             <div class="card mt-5">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-12  mb-5">
-                        <select name="filter" id="" class="form-select"  onchange="location =this.value;">
-                            @foreach ($jmltgl as $db )
-                            <option value="/coindate/{{ $coinfirst }}/{{ $db->tgl }}" {{ $db->tgl == $tgl ? 'selected' : '' }}>
-                                        {{ \Carbon\Carbon::parse($db->tgl)->format('d M Y') }}
-                            </option>
-                            @endforeach
-                        </select>
+                            <select name="filter" id="" class="form-select" onchange="location =this.value;">
+                                @foreach ($jmltgl as $db )
+                                <option value="/coindate/{{ $coinfirst }}/{{ $db->tgl }}"
+                                    {{ $db->tgl == $tgl ? 'selected' : '' }}>
+                                    {{ \Carbon\Carbon::parse($db->tgl)->format('d M Y') }}
+                                </option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="col-md-4 col-12">
                             <h5><b>
-                                Tanggal :
-                                {{ \Carbon\Carbon::parse($tgl)->format('d M Y') }}
-                            </b></h5>
+                                    Tanggal :
+                                    {{ \Carbon\Carbon::parse($tgl)->format('d M Y') }}
+                                </b></h5>
                         </div>
                         <div class="col-md-4 col-12">
                             <h5><b>
-                                Total Coin {{ $coinfirst }}/Day :
-                                {{number_format( $totalcoin,8)  }}
-                            </b></h5>
+                                    Total Coin {{ $coinfirst }}/Day :
+                                    {{number_format( $totalcoin,8)  }}
+                                </b></h5>
                         </div>
                         <div class="col-md-4 col-12 text-right">
                             <h5><b>
-                                {{ $coinfirst }} TOTAL :
-                                {{"Rp " . number_format( $total, 0, ",", ".")  }}
-                            </b></h5>
+                                    {{ $coinfirst }} TOTAL :
+                                    {{"Rp " . number_format( $total, 0, ",", ".")  }}
+                                </b></h5>
                         </div>
                     </div>
                 </div>
@@ -85,6 +127,7 @@
                                 <th scope="col">#</th>
                                 <th scope="col">Mesin</th>
                                 <th scope="col">Active Mesin</th>
+                                <th scope="col">Jam Aktif</th>
                                 <th scope="col">Watt</th>
                                 <th scope="col">income</th>
                                 <th scope="col">Listrik</th>
@@ -104,6 +147,7 @@
                                 <th scope="row">{{ $no }}</th>
                                 <td>{{ $db->mesin }}</td>
                                 <td>{{ $db->active_mesin }}</td>
+                                <td>{{ $db->active_mesin }} Jam</td>
                                 <td>{{ $db->watt }}</td>
                                 <td>{{ number_format($db->nilaisbr,9) }}</td>
                                 <td>{{ number_format($db->listrik,9) }}</td>
@@ -115,7 +159,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                {{-- </div> --}}
+                    {{-- </div> --}}
                     <div class="row">
                         <div class="col-md-12 text-center">
                             {{ $miner->links('pagination::bootstrap-4')}}
@@ -126,48 +170,50 @@
             </div>
 
             <div class="row">
-                
-                    <div class="col-md-12 mt-5"> 
-                        <h4> 
-                            <b>
-                            Data Akumulasi mulai : 
+
+                <div class="col-md-12 mt-5">
+                    <h4>
+                        <b>
+                            Data Akumulasi mulai :
                             @if ($tglgl == "awal")
-                                {{ $tglgl }}
+                            {{ $tglgl }}
 
                             @else
                             {{  \Carbon\Carbon::parse($tglgl)->format('d M Y') }}
                             @endif
-                            
-                            </b>
-                        </h4>
-                    </div>
+
+                        </b>
+                    </h4>
+                </div>
                 <div class="col-md-6">
                     <div class="card ">
-                        <div class="card-header"><h5><b> Total Wallet</b></h5></div>
+                        <div class="card-header">
+                            <h5><b> Total Wallet</b></h5>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Coin</th>
-                                        <th scope="col">Total Coin</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no =0; ?>
-                                    @foreach ($totalweek as $db)
-                                    <?php $no ++ ?>
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $db -> coin }}</td>
-                                        <td>{{ number_format($db -> totalwallet,8) }}</td>
-                                    </tr>
-                                    @endforeach
-                               
-        
-                                </tbody>
-                            </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Coin</th>
+                                            <th scope="col">Total Coin</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no =0; ?>
+                                        @foreach ($totalweek as $db)
+                                        <?php $no ++ ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $db -> coin }}</td>
+                                            <td>{{ number_format($db -> totalwallet,8) }}</td>
+                                        </tr>
+                                        @endforeach
+
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -175,33 +221,35 @@
 
                 <div class="col-md-6">
                     <div class="card ">
-                        <div class="card-header"><h5><b> Total Listrik</b></h5></div>
+                        <div class="card-header">
+                            <h5><b> Total Listrik</b></h5>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Coin</th>
-                                        <th scope="col">Listrik</th>
-                                        <th scope="col">Listrik In IDR </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no =0; ?>
-                                    @foreach ($totalweek as $db)
-                                    <?php $no ++ ?>
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $db -> coin }}</td>
-                                        <td>{{ $db -> totallistrik }}</td>
-                                       
-                                        <td>{{ "Rp " . number_format($db -> ratelistrik, 0, ",", ".") }}</td>
-                                    </tr>
-                                    @endforeach
-                            
-                                </tbody>
-                            </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">No</th>
+                                            <th scope="col">Coin</th>
+                                            <th scope="col">Listrik</th>
+                                            <th scope="col">Listrik In IDR </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no =0; ?>
+                                        @foreach ($totalweek as $db)
+                                        <?php $no ++ ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $db -> coin }}</td>
+                                            <td>{{ $db -> totallistrik }}</td>
+
+                                            <td>{{ "Rp " . number_format($db -> ratelistrik, 0, ",", ".") }}</td>
+                                        </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -209,62 +257,64 @@
 
                 <div class="col-md-12">
                     <div class="card mt-5">
-                        <div class="card-header"><h5><b> Total Pendapatan</b></h5></div>
+                        <div class="card-header">
+                            <h5><b> Total Pendapatan</b></h5>
+                        </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" rowspan="1">No</th>
-                                        <th scope="col" rowspan="1">Coin</th>
-                                        <th scope="col" rowspan="1">wallet</th>
-                                        <th scope="col" rowspan="1">Listrik</th>
-                                        <th scope="col" rowspan="1">Wallet - Listrik</th>
-                                        <th scope="col" colspan="2" style="text-align: center">Bagi Hasil</th>
-                                    </tr>
-                                    <tr style="border: 0">
-                                        <th ></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th></th>
-                                        <th colspan="">Investor</th>
-                                        <th colspan="">Manajemen</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php $no =0; ?>
-                                    @foreach ($totalweek as $db)
-                                    <?php $no ++ ?>
-                                    <tr>
-                                        <td>{{ $no }}</td>
-                                        <td>{{ $db -> coin }}</td>
-                                        <td>{{ number_format($db -> totalwallet,8) }}</td>
-                                        <td>{{ $db -> totallistrik }}</td>
-                                        <td>{{ number_format($db -> hslkrglistrik,8) }}</td>
-                                        <td>{{ number_format($db -> total,9) }}</td>
-                                        <td>{{ number_format($db -> totalmanage,9) }}</td>
-        
-                                    </tr>
-                                    @endforeach
-                                    <tr>
-                                        <td colspan="5" class="text-right"><b>Estimasi Pendapatan</b></td>
-        
-                                        <td><b> {{"Rp " . number_format($totalIncome, 0, ",", ".")}}
-                                        </b></td>
-                                        <td><b> {{"Rp " . number_format($totalIncomeMNJ, 0, ",", ".")}}
-                                        </b></td>
-                                    </tr>
-        
-                                </tbody>
-                            </table>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" rowspan="1">No</th>
+                                            <th scope="col" rowspan="1">Coin</th>
+                                            <th scope="col" rowspan="1">wallet</th>
+                                            <th scope="col" rowspan="1">Listrik</th>
+                                            <th scope="col" rowspan="1">Wallet - Listrik</th>
+                                            <th scope="col" colspan="2" style="text-align: center">Bagi Hasil</th>
+                                        </tr>
+                                        <tr style="border: 0">
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                            <th colspan="">Investor</th>
+                                            <th colspan="">Manajemen</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no =0; ?>
+                                        @foreach ($totalweek as $db)
+                                        <?php $no ++ ?>
+                                        <tr>
+                                            <td>{{ $no }}</td>
+                                            <td>{{ $db -> coin }}</td>
+                                            <td>{{ number_format($db -> totalwallet,8) }}</td>
+                                            <td>{{ $db -> totallistrik }}</td>
+                                            <td>{{ number_format($db -> hslkrglistrik,8) }}</td>
+                                            <td>{{ number_format($db -> total,9) }}</td>
+                                            <td>{{ number_format($db -> totalmanage,9) }}</td>
+
+                                        </tr>
+                                        @endforeach
+                                        <tr>
+                                            <td colspan="5" class="text-right"><b>Estimasi Pendapatan</b></td>
+
+                                            <td><b> {{"Rp " . number_format($totalIncome, 0, ",", ".")}}
+                                                </b></td>
+                                            <td><b> {{"Rp " . number_format($totalIncomeMNJ, 0, ",", ".")}}
+                                                </b></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            
+
                 <div class="col-md-12 mt-5">
-                    <div class="card">            
+                    <div class="card">
                         <div class="card-header mt-0">
                             <h5>List Payment</h5>
                         </div>
@@ -332,22 +382,23 @@
                                             <td>{{ $post ->rateusdtobidr}}</td>
                                             <td>{{ $post ->feebidr  }}</td>
                                             <td>{{ $post ->totalbidr	}}</td>
-                                            
+
                                             <td>{{$post ->feecointoidr  }}</td>
                                             @if ($post ->feecoin != 0)
                                             <td>{{ number_format($post ->feecoin ,6) }}</td>
                                             @else
                                             <td>{{$post ->feecoin }}</td>
                                             @endif
-                                            
-                
+
+
                                             <td>{{ $post ->totalcoin}} </td>
                                             <td> {{"Rp " . number_format($post ->total, 0, ",", ".")}}</td>
 
-                                            <td> {{"Rp " . number_format($post ->lebihkurangbayar, 0, ",", ".")  }} </td>
+                                            <td> {{"Rp " . number_format($post ->lebihkurangbayar, 0, ",", ".")  }}
+                                            </td>
                                             <td> {{ \Carbon\Carbon::parse( $post ->tanggal )->format('d M Y') }}</td>
-                                            
-                                    
+
+
                                         </tr>
                                         @endforeach
                                     </tbody>
@@ -357,13 +408,23 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
-            
+
         </div>
 
 
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+
+</script>
+
+@endpush

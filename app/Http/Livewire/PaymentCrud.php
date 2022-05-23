@@ -37,7 +37,6 @@ class PaymentCrud extends Component
     public $show = false;
     public $saldoawal;
     public $saldoakhir;
-
     public $networkfeetoidr;
     public $totalfeetoidr;
     public $ratelitetobtc;
@@ -46,6 +45,7 @@ class PaymentCrud extends Component
     public $totalbtc;
     public $lebihkurangbayar;
     public $coinxbidrrate;
+    public $invminnetworkfee;
 
 
 
@@ -103,8 +103,8 @@ class PaymentCrud extends Component
       $this->totalbtc                       = "";
       $this->lebihkurangbayar               = "";
       $this->coinxbidrrate                  = "";
-    
-    }
+      $this->invminnetworkfee               = "";   
+     }
 
     public function cancel()
     {
@@ -142,13 +142,9 @@ class PaymentCrud extends Component
             'user' => 'required',
             'Wallet' => 'required',
             'networkfee' => 'required',
-            'walletcompany' => 'required',
             'listrik' => 'required',
             'investor' => 'required',
             'management' => 'required',
-            'ratecointousd' => 'required',
-            'feecointousd' => 'required',
-            'totalusd' => 'required',
             'rateusdtobidr' => 'required',
             'feebidr' => 'required',
             'totalbidr' => 'required',
@@ -168,13 +164,13 @@ class PaymentCrud extends Component
         'users_id'              => $this->user,
         'wallet'                => $this->Wallet,
         'networkfee'            => $this->networkfee,
-        'walletcompany'         => $this->walletcompany,
+        'walletcompany'         => 0,
         'listrik'               => $this->listrik,
         'investor'              => $this->investor,
         'management'            => $this->management,
-        'ratecointousd'         => $this->ratecointousd,
-        'feecointousd'          => $this->feecointousd,
-        'totalusd'              => $this->totalusd,
+        'ratecointousd'         => 0,
+        'feecointousd'          => 0,
+        'totalusd'              => 0,
         'feebidr'               => $this->feebidr,
         'feecointoidr'          => $this->feecointoidr,
         'total'                 => $this->total,
@@ -186,14 +182,15 @@ class PaymentCrud extends Component
         'saldoawal'             => $this->saldoawal,
         'saldoakhir'            => $this->saldoakhir,
 
-        'networkfeetoidr'       => $this->networkfeetoidr,
-        'totalfeeidr'           => $this->totalfeetoidr,
+        'networkfeetoidr'       => 0,
+        'totalfeeidr'           => 0,
         'ratelitetobtc'         => $this->ratelitetobtc,
         'feelitetobtc'          => $this->feelitetobtc,
         'totalbtc'              => $this->totalbtc,
         'investorlitetobtc'     => $this->investorratelitetobtc,
         'coinxbidrrate'         => $this->coinxbidrrate,
         'lebihkurangbayar'      => $this->lebihkurangbayar,
+        'invminnetwrokfee'      => $this->invminnetworkfee,
         ]);
 
         session()->flash('message', $this->payment_id ? 'Data Berhasil Diupdate.' : 'Data Berhasil Ditambahkan.');
@@ -241,7 +238,7 @@ class PaymentCrud extends Component
         $this->investorratelitetobtc           = $post->investorlitetobtc;
         $this->coinxbidrrate                   = $post->coinxbidrrate;
         $this->lebihkurangbayar                = $post->lebihkurangbayar;
-
+        $this->invminnetworkfee                = $post->invminnetwrokfee;
 
     }
 

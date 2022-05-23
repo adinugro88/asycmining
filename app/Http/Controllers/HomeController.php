@@ -11,6 +11,12 @@ use App\Models\Datahasil;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Exports\DatahasilExport;
+use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Facades\Excel;
+
+use App\Exports\UsersExport;
+use Nikazooz\Simplesheet\Facades\Simplesheet;
 
 
 class HomeController extends Controller
@@ -41,10 +47,13 @@ class HomeController extends Controller
 
         $user   = Auth::User();
 
-        $payment = Payment::where('users_id', '=', $user->id)
-        ->get();
+        // $payment = Payment::groupBy('tanggal')
+        // ->where('users_id', '=', )
+        // ->get();
 
-        // dd($payment);
+        $payment = DB::table('payments')->where(array('users_id'=>Auth::user()->id ))->groupBy('tanggal')->get();
+
+        //  dd($payment);
 
         $tglawal = Payment::where('users_id', '=', $user->id)
         ->get()->last();
@@ -185,6 +194,79 @@ class HomeController extends Controller
 
         return view('home',['post'=>$post,'tglgl'=>$tglgl,'coinfirst'=>$coinfirst,'miner'=>$miner,'total'=>$total,'data'=>$data,'group'=>$group,'tgl'=>$tgl,'jmltgl'=>$jmltgl,'totalweek'=>$totalweek,'totalcoin'=>$totalcoin,'totalIncome'=>$totalIncome,'totalIncomeMNJ'=>$totalIncomeMNJ,'url'=>$url,'payment'=>$payment,]);
     
+    }
+
+    public function export($coin,$tglawal,$tglakhir)
+    {   
+        $user   = Auth::User();
+        $user_id = $user->id;
+
+        return Excel::download(new DatahasilExport($coin,$tglawal,$tglakhir,$user_id))->download( "Datahasil _ ".$user->name." _ ".$tglawal."_".$tglakhir.".xlsx");
+    }
+    public function pencarian(Request $request)
+    {
+        $user   = Auth::User();
+        $tglawal = $request->tglawal;
+        $tglakhir = $request->tglakhir;
+        $coin = $request->coin;
+
+        $miner  = Datahasil::select("*",DB::raw('sum(INVERT_IDR) as akumulasi,sum(active_mesin) as mesinaktif ,sum(ratelistrik) as totallistrik,count(mesin) as mesincount'))
+        ->where('users_id', "=", $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [$tglawal, $tglakhir])
+        ->groupBy(DB::raw("DATE_FORMAT(tgl, '%d-%m-%Y')"))
+        ->get();
+
+        $totaljam = Datahasil::selectRaw("
+        sum(active_mesin) as totaljammesin")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+        $totallistrik = Datahasil::selectRaw("
+        sum(ratelistrik) as tllistrik")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+        $totalwallet = Datahasil::selectRaw("
+        sum(nilaisbr) as walletttl")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+        $walletkuranglistrik = Datahasil::selectRaw("
+        sum(hasillistrikkurang) as hasil")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+        $investor = Datahasil::selectRaw("
+        sum(INVERT_IDR) as totalinv")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+        $Management = Datahasil::selectRaw("
+        sum(manage_IDR) as totalmanage")
+        ->where('users_id', '=', $user->id)
+        ->where('coin', '=',  $coin)
+        ->whereBetween('tgl', [ $tglawal,$tglakhir])
+        ->get();
+
+
+        $post   = MesinMining::where('users_id', '=', $user->id)->get();
+        $url = Datahasil::selectRaw("coin")
+        ->where('users_id', '=', $user->id)
+        ->groupBy('coin')
+        ->get();
+
+        return view('pencarian',['miner'=>$miner,'tglawal'=>$tglawal,'tglakhir'=>$tglakhir,'coin'=>$coin,'post'=>$post,'url'=>$url,'totaljam'=>$totaljam,'totallistrik'=>$totallistrik,'investor'=>$investor,'Management'=>$Management,'walletkuranglistrik'=>$walletkuranglistrik,'totalwallet'=>$totalwallet]);
     }
 
 

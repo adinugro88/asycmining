@@ -80,16 +80,15 @@
 
                 <div class="card-body">
 
-
-
                     <table class="table table table-responsive w-100 d-block d-md-table">
                         <thead class="thead-dark">
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Mesin</th>
+                                <th scope="col">Active Mesin</th>
+                                <th scope="col">Jam Aktif</th>
                                 <th scope="col">Watt</th>
                                 <th scope="col">income</th>
-                                <!--<th scope="col">Mesin Aktif</th>-->
                                 <th scope="col">Listrik</th>
                                 <th scope="col">Income - Listrik </th>
                                 <th scope="col">Investor</th>
@@ -106,9 +105,10 @@
                             <tr>
                                 <th scope="row">{{ $no }}</th>
                                 <td>{{ $db->mesin }}</td>
+                                <td>{{ $db->active_mesin }}</td>
+                                <td>{{ $db->active_mesin }} Jam</td>
                                 <td>{{ $db->watt }}</td>
                                 <td>{{ number_format($db->nilaisbr,9) }}</td>
-                                <!--<td>{{$db->active_mesin }} Jam</td>-->
                                 <td>{{ number_format($db->listrik,9) }}</td>
                                 <td>{{ number_format($db->hasillistrikkurang,9) }}</td>
                                 <td>{{ number_format($db->investor,9) }}</td>

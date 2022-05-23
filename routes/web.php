@@ -30,6 +30,7 @@ Auth::routes();
 Route::middleware(['is_admin'])->group(function () {
     Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home');
     Route::get('income', [IncomeController::class, 'adminHome'])->name('income');
+    
     Route::get('admin/investor', [InvestorController::class, 'index'])->name('investor');
     Route::get('admin/mesin', [MesinController::class, 'index'])->name('mesin');
     Route::get('admin/mesin/{id}', [MesinCRDController::class, 'index'])->name('MesinCrud');
@@ -41,6 +42,7 @@ Route::middleware(['is_admin'])->group(function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/coindate/{coin}/{tgld}', [App\Http\Controllers\HomeController::class, 'ubahcoindate'])->name('ubahtgl');
-
+Route::get('data/find', [HomeController::class, 'pencarian'])->name('admin.cari');
+Route::get('download/excel/{coin}/{tglawal}/{tglakhir}', [HomeController::class, 'export'])->name('admin.excel');
 Route::get('/coin/{coin}', [App\Http\Controllers\HomeController::class, 'custom'])->name('btc');
 Route::get('/btc/{tgld}', [App\Http\Controllers\HomeController::class, 'btctgl'])->name('btctgl');

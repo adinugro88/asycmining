@@ -34,17 +34,17 @@
                             <th scope="col">Saldo Awal</th>
                             <th scope="col">Saldo Akhir</th>
                             <th scope="col">Wallet</th>
+                            <th scope="col">listrik</th>
+                            <th scope="col">investor</th>
+                            <th scope="col">Management</th>
                             <th scope="col">Network Fee</th>
-                            <th scope="col">Network Fee To Idr</th>
-                            <th scope="col">Total Fee To Idr</th>
-                            <th scope="col">Wallet Company</th>
+                            <th scope="col">Investor - Fee</th>
                             <th scope="col">Rate Lite To BTC</th>
                             <th scope="col">Investor * Rate Lite To BTC</th>
                             <th scope="col">Fee Lite To BTC</th>
                             <th scope="col">Total Btc</th>
-                            <th scope="col">listrik</th>
-                            <th scope="col">investor</th>
-                            <th scope="col">Management</th>
+
+                         
                             <th scope="col">Rate Coin To USDT</th>
                             <th scope="col">Fee Coin To USDT</th>
                             <th scope="col">Total USDT</th>
@@ -73,17 +73,17 @@
                             <td>{{ number_format($post ->saldoawal,8)  }}</td>
                             <td>{{ number_format($post ->saldoakhir,8) }}</td>
                             <td>{{ number_format($post ->wallet,8) }}</td>
+                            <td>{{ number_format($post ->listrik ,6) }} </td>
+                            <td>{{ number_format($post ->investor ,6) }}</td>
+                            <td>{{ number_format($post ->management ,6) }}</td>
                             <td>{{ $post ->networkfee }}</td>
-                            <td>{{ $post ->networkfeetoidr }}</td>
-                            <td>{{ $post ->totalfeeidr }}</td>
-                            <td>{{ number_format( $post ->walletcompany ,6) }}</td>
+                            <td>{{ $post ->invminnetwrokfee }}</td>
+                          
                             <td>{{ number_format($post ->ratelitetobtc ,6) }} </td>
                             <td>{{ number_format($post ->investorlitetobtc ,6) }} </td>
                             <td>{{ number_format($post ->feelitetobtc ,6) }} </td>
                             <td>{{ number_format($post ->totalbtc ,6) }} </td>
-                            <td>{{ number_format($post ->listrik ,6) }} </td>
-                            <td>{{ number_format($post ->investor ,6) }}</td>
-                            <td>{{ number_format($post ->management ,6) }}</td>
+                       
                             <td>{{ $post ->ratecointousd}}</td>
                             @if ($post ->feecoin != 0)
                             <td>{{ number_format($post ->feecointousd ,6) }}</td>
